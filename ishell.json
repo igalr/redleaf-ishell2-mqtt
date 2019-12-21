@@ -1,0 +1,76 @@
+{
+	"extend": [
+        {
+			"name": "log",
+			"class": "ca.redleafsolutions.ishell2.logs.iLogger",
+			"params": {
+				"dir": "logs",
+				"level": "FINEST",
+				"trace": false
+			}
+		},
+		{
+			"name": "trace",
+			"class": "ca.redleafsolutions.Trace",
+			"params": {
+				"on": true
+			}
+		},
+		{
+			"name": "q1",
+			"class": "ca.redleafsolutions.ishell.mqtt.MQTT",
+			"params": {
+				"endpoint": "tcp://<TCP endpoint>",
+				"name": "Q1"
+			}
+		},
+		{
+			"name": "q2",
+			"class": "ca.redleafsolutions.ishell.mqtt.MQTT",
+			"params": {
+				"endpoint": "ssl://<SSL endpoint>",
+				"name": "Q2",
+				"username": "<username>",
+				"password": "<password>"
+			}
+		},
+		{
+			"name": "q3",
+			"class": "ca.redleafsolutions.ishell.mqtt.MQTT",
+			"params": {
+				"endpoint": "tcp://<TCP endpoint>",
+				"name": "Q3",
+				"username": "<username>",
+				"password": "<password>"
+			}
+		},
+		{
+			"name": "q4",
+			"class": "ca.redleafsolutions.ishell.mqtt.MQTT",
+			"params": {
+				"endpoint": "ssl://<SSL endpoint>",
+				"name": "Q4",
+				"username": "<username>",
+				"password": "<password>"
+			}
+		},
+		{
+			"name": "utest",
+			"class": "ca.redleafsolutions.ishell2.utest.UTestWrapper",
+			"params": {
+				"root": "utest"
+			}
+		}
+	],
+	"interface": [
+		{
+			"type": "http",
+			"port": 8027,
+			"default": "index.html",
+			"routing": {
+				"root": { "directory": "htdoc", "type": "native" }
+			}
+		},
+		{ "type": "console", "showtiming": true }
+	]
+}
