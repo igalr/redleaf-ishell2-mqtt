@@ -150,7 +150,6 @@ public class MQTT extends EventDispatcher<QEvent> implements JSONWritable, MqttC
 		client.publish (topic, mqttmessage);
 	}
 
-	@Override
 	@IShellInvisible
 	public JSONItem toJSON () throws JSONValidationException {
 		JSONItem json = JSONItem.newObject ();
@@ -172,19 +171,16 @@ public class MQTT extends EventDispatcher<QEvent> implements JSONWritable, MqttC
 		return json;
 	}
 
-	@Override
 	public void connectionLost (Throwable e) {
 		dispatchEvent (new QEvent.ConnectionLost (this, e));
 	}
 
-	@Override
 	public void deliveryComplete (IMqttDeliveryToken token) {
 		if (!deliveryEvent)
 			return;
 		dispatchEvent (new QEvent.MessageSent (this, token.getMessageId ()));
 	}
 
-	@Override
 	public void messageArrived (String topic, MqttMessage message) throws Exception {
 //		Trace.info (name + "> " + topic + ": " + message);
 		dispatchEvent (new QEvent.MessageReceived (this, topic, message.getPayload ()));
@@ -208,7 +204,6 @@ public class MQTT extends EventDispatcher<QEvent> implements JSONWritable, MqttC
 		Trace.info (mqtt1.isConnected (), mqtt2.isConnected ());
 		mqtt1.sub ("some-topic");
 		mqtt1.addEventHandler (new EventHandler<QEvent> () {
-			@Override
 			public void handleEvent (QEvent event) {
 				Trace.info ("Message received by " + event.getClient ().getName ());
 				System.exit (0);
